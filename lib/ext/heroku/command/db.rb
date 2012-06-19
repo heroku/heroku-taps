@@ -67,6 +67,11 @@ module Heroku::Command
 
     protected
 
+    # remove original implementation
+    if public_method_defined?(:parse_database_yml)
+      undef_method(:parse_database_yml)
+    end
+
     def parse_database_yml
       return "" unless File.exists?(Dir.pwd + '/config/database.yml')
       require 'erb'
@@ -92,6 +97,11 @@ module Heroku::Command
       ""
     end
 
+    # remove original implementation
+    if public_method_defined?(:conf_to_uri_hash)
+      undef_method(:conf_to_uri_hash)
+    end
+
     def conf_to_uri_hash(conf)
       uri = {}
       uri['scheme'] = conf['adapter']
@@ -107,6 +117,11 @@ module Heroku::Command
       uri
     end
 
+    # remove original implementation
+    if public_method_defined?(:userinfo_from_uri)
+      undef_method(:userinfo_from_uri)
+    end
+
     def userinfo_from_uri(uri)
       username = uri['username'].to_s
       password = uri['password'].to_s
@@ -116,6 +131,11 @@ module Heroku::Command
       userinfo << username
       userinfo << ":" << password if password.length > 0
       userinfo
+    end
+
+    # remove original implementation
+    if public_method_defined?(:uri_hash_to_url)
+      undef_method(:uri_hash_to_url)
     end
 
     def uri_hash_to_url(uri)
@@ -132,6 +152,11 @@ module Heroku::Command
       }
 
       URI::Generic.build(uri_parts).to_s
+    end
+
+    # remove original implementation
+    if public_method_defined?(:parse_taps_opts)
+      undef_method(:parse_taps_opts)
     end
 
     def parse_taps_opts
@@ -179,6 +204,11 @@ module Heroku::Command
       opts
     end
 
+    # remove original implementation
+    if public_method_defined?(:taps_client)
+      undef_method(:taps_client)
+    end
+
     def taps_client(op, opts)
       Taps::Config.verify_database_url(opts[:database_url])
       if opts[:resume_filename]
@@ -200,6 +230,11 @@ module Heroku::Command
         opts[:session_uri] = info['session']
         Taps::Cli.new([]).clientxfer(op, opts)
       end
+    end
+
+    # remove original implementation
+    if public_method_defined?(:load_taps)
+      undef_method(:load_taps)
     end
 
     def load_taps
