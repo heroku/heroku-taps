@@ -3,4 +3,4 @@ Dir[File.join(File.expand_path("../vendor", __FILE__), "*")].each do |vendor|
 end
 
 require("heroku/command/db")
-require("#{File.dirname(__FILE__)}/lib/ext/heroku/command/db")
+require("#{File.dirname(__FILE__)}/lib/taps/heroku/command/db")
